@@ -1,0 +1,19 @@
+<h1> New Record</h1>
+<form action="/product" method="post">
+<table>
+    <tr> <td> Product Name: </td> <td> <input type="text" name="productname" required> </td> </tr>
+    <tr> <td> Image: </td> <td> <input type="text" name="prodimage" required>	</td> </tr>
+    <tr> <td> Supplier ID: </td> <td> <input type="number" name="supplier_id" required> </td> </tr>
+    <tr> <td> Category ID: </td> <td> <input type="number" name="category_id" required> </td> </tr>
+    <tr> <td> Sub Category: </td> <td> <input type="text" name="subcategory" required> </td></tr>
+    <tr> <td> Price: </td> <td> <input type="text" name="prodprice" required> </td> </tr>
+    <tr> <td> Display Homepage?: </td> <td> <input type="checkbox" name="homepage"> </td> </tr>
+    <tr> <td> Status: </td> <td> <select	name="status"	required>
+        <option selected disabled>Choose Status</option>
+        <option>Available</option>
+        <option>Discontinued</option>
+        <option>Future Plan</option>
+        </select> </td> </tr>
+</table>
+<button type="submit">Save</button>
+</form>

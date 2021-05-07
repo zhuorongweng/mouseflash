@@ -1,13 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>This is a MouseFlash Application First Page.....</p>
-    <img src="/images/logo.png" width="200" height="200">
-  </body>
-</html>
+<h1>Welcome to MouseFlash</h1>
+<% if (allrecs.length > 0) {%>
+    <% allrecs.forEach((recref, index) => { %>
+        <product>
+            <table>
+                <tr><td><%= recref.productname %></td></tr>
+                <tr><td><%= recref.prodimage %></td></tr>
+                <tr><td><%= recref.category_id %></td></tr>
+                <tr><td><%= recref.supplier_id %></td></tr>
+                <tr><td><%= recref.prodprice %></td></tr>
+                <tr><td><%= recref.status %></td></tr>
+                <tr><td><a href='/product/<%= recref.product_id%>/show'>Details</a></td></tr>
+            </table>
+        </product>
+    <% }); %>
+<% } %>
+
+<a href="/"><img src="/images/music.png"> </a></td>
+
+
+    
+  
+
+

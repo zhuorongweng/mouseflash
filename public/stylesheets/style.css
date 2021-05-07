@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #034e6b;
 }
 
 h1{
@@ -18,7 +18,7 @@ img {
 }
 
 img:hover {
-  border: 1px solid #777;
+  border: 1px solid rgb(211, 112, 112);
 }
 
 ul {
@@ -46,7 +46,7 @@ ul {
   }
 
   .button1 {
-    background-color: #008CBA;  font-size: 10px;
+    background-color: #00475f;  font-size: 10px;
     border-radius: 4px;
     border: 2px solid #4CAF50;
     -webkit-transition-duration: 0.4s; /* Safari */  transition-duration: 0.4s;
@@ -59,10 +59,11 @@ ul {
     product {
       margin: 5px;
       border: 2px solid #ccc;  float: left;
-      background: #ffffe6;
-    box-shadow: 5px 5px 2px #888888;  min-width: 200px;
+      background: #cec4c4;
+    box-shadow: 5px 5px 2px #cec093;  min-width: 200px;
     max-width: 200px;  min-height: 250px;  max-height: 250px;
     border-radius: 5px;  
     padding: 5px;
     }
+        
     

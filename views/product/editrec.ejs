@@ -1,0 +1,25 @@
+<h1> Edit Product</h1>
+<form action="/product/save" method="post">
+    <input type="hidden" name="product_id" value="<%= onerec.product_id %>" >
+<table>
+    <tr> <td> Product Name: </td> <td> <input type="text" name="productname" value="<%= onerec.productname %>" required> </td> </tr>
+    <tr> <td> Image: </td> <td> <input type="text" name="prodimage" value="<%= onerec.prodimage %>" required> </td> </tr>
+    <tr> <td> Supplier ID: </td> <td> <input type="number" name="supplier_id" value=<%= onerec.supplier_id %> required> </td> </tr>
+    <tr> <td> Category ID: </td> <td> <input type="number" name="category_id" value=<%= onerec.category_id %> required> </td> </tr>
+    <tr> <td> Sub Category: </td> <td> <input type="text" name="subcategory" value="<%= onerec.subcategory %>" required> </td> </tr>
+    <tr> <td> Price: </td> <td> <input type="text" name="prodprice" value=<%= onerec.prodprice %> required> </td> </tr>
+    <% if (onerec.homepage) {%>
+        <tr> <td> Display Homepage?: </td> <td> <input type="checkbox" name="homepage" checked=true> </td> </tr>
+    <% } else { %> 
+        <tr> <td> Display Homepage?: </td> <td> <input type="checkbox" name="homepage"> </td> </tr>
+    <% } %>
+    <tr> <td> Status: </td> <td> 
+        <select name="status" required>
+            <option selected><%= onerec.status %></option>
+            <option>Available</option>
+            <option>Discontinued</option>
+            <option>Future Plan</option>
+        </select> </td> </tr>
+</table>
+<button type="submit">Save</button>
+</form>
