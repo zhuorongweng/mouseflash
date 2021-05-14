@@ -3,8 +3,19 @@
 <table>
     <tr> <td> Product Name: </td> <td> <input type="text" name="productname" required> </td> </tr>
     <tr> <td> Image: </td> <td> <input type="text" name="prodimage" required>	</td> </tr>
-    <tr> <td> Supplier ID: </td> <td> <input type="number" name="supplier_id" required> </td> </tr>
-    <tr> <td> Category ID: </td> <td> <input type="number" name="category_id" required> </td> </tr>
+    <tr> <td> Supplier ID: </td> <td> <input type="number" name="supplier_id" required></td> </tr>
+
+    <tr> <td> Category ID: </td> <td> 
+        <select name="category_id" required>
+            <optgroup label="Select Category">
+                <% for (var i = 0; i < category.length; i++) { %>
+                    <option value=<%= category[i].category_id %>>
+                    <%= category[i].categoryname %> </option>
+                <% } %>
+            </optgroup>
+        </select>
+    </td> </tr>
+    
     <tr> <td> Sub Category: </td> <td> <input type="text" name="subcategory" required> </td></tr>
     <tr> <td> Price: </td> <td> <input type="text" name="prodprice" required> </td> </tr>
     <tr> <td> Display Homepage?: </td> <td> <input type="checkbox" name="homepage"> </td> </tr>

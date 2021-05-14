@@ -11,7 +11,16 @@ router.get('/', function(req, res, next) {
       console.log(err);  
       res.render('error');
     }
-      res.render('index', {allrecs: result });
+
+    let query = "SELECT promotion_id, promotitle, promoimage FROM promotion WHERE startdate <= CURRENT_DATE() and enddate >=  CURRENT_DATE()";
+    // execute query
+    db.query(query, (err, result2) => {
+      if (err) {
+        console.log(err);  res.render('error');
+      }
+        res.render('index', {allrecs: result, promos: result2 });
+      });
+
     });
 });
 

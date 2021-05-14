@@ -4,8 +4,14 @@
 <table>
     <tr> <td> Subscription ID : </td> <td> <input type="text" name="subscription_id " value="<%= onerec.subscription_id %>" required> </td> </tr>
     <tr> <td> Customer ID : </td> <td> <input type="text" name="customer_id " value="<%= onerec.customer_id %>" required> </td> </tr>
-    <tr> <td> Subscribe date : </td> <td> <input type="date" name="subscribedate " value="<%= onerec.subscribedate %>" required> </td> </tr>
-    <tr> <td> Unsubscribe date : </td> <td> <input type="date" name="unsubscribedate " value="<%= onerec.unsubscribedate %>" required> </td> </tr>
-</table>
+    <tr> <td> Subscribe date : </td> <td> <input type="date" name="subscribedate " value="<%= onerec.subscribedate.toISOString().split('T')[0] %>" required> </td> </tr>
+    
+    <% if (onerec.unsubscribedate== "") { %>
+        <tr> <td> Unsubscribe date : </td> <td> <input type="date" name="unsubscribedate " value="<%= onerec.unsubscribedate %>"> </td> </tr>
+    <% }  else{ %>
+        <tr> <td> Unsubscribe date : </td> <td> <input type="date" name="unsubscribedate " value="<%= onerec.unsubscribedate.toISOString().split('T')[0] %>"> </td></tr>
+    <%} %>
+
+    </table>
 <button type="submit">Save</button>
 </form>

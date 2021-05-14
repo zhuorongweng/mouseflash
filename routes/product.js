@@ -40,8 +40,17 @@ router.get('/:recordid/show', function(req, res, next) {
 // Route to show empty form to obtain input form end-user.
 // URL: http://localhost:4039/product/addrecord
 // ==================================================
-router.get('/addrecord', function(req, res, next) {  
-    res.render('product/addrec');
+router.get('/addrecord', function(req, res, next) {
+
+    let query = "SELECT category_id, categoryname FROM category";
+    // execute query
+    db.query(query, (err, result) => {  
+        if (err) {
+            console.log(err);  
+            res.render('error');
+        }
+            res.render('product/addrec', {category: result});});
+
 });
 
 // ==================================================
@@ -82,7 +91,15 @@ router.get('/:recordid/edit', function(req, res, next) {
             console.log(err);  
             res.render('error');
         } else {
-            res.render('product/editrec', {onerec: result[0] });
+            let query = "SELECT category_id, categoryname FROM category";
+            // execute query  
+            db.query(query, (err, catss) => {
+                if (err) {
+                    console.log(err);  
+                    res.render('error');
+                }
+                res.render('product/editrec', {onerec: result[0], category: catss});
+            });
         }
     });
 });

@@ -1,24 +1,35 @@
 <h1>Welcome to MouseFlash</h1>
-<% if (allrecs.length > 0) {%>
-    <% allrecs.forEach((recref, index) => { %>
-        <product>
-            <table>
-                <tr><td><%= recref.productname %></td></tr>
-                <tr><td><%= recref.prodimage %></td></tr>
-                <tr><td><%= recref.category_id %></td></tr>
-                <tr><td><%= recref.supplier_id %></td></tr>
-                <tr><td><%= recref.prodprice %></td></tr>
-                <tr><td><%= recref.status %></td></tr>
-                <tr><td><a href='/product/<%= recref.product_id%>/show'>Details</a></td></tr>
-            </table>
-        </product>
-    <% }); %>
-<% } %>
 
-<a href="/"><img src="/images/music.png"> </a></td>
+<table> <tr>
 
+    <td width="80%" >
+        <% if (allrecs.length > 0) {%>
+            <% allrecs.forEach((recref, index) => { %>
+                <product>
+                    <table>
+                        <tr><td><%= recref.productname %></td></tr>
+                        <tr><td><%= recref.prodimage %></td></tr>
+                        <tr><td><%= recref.category_id %></td></tr>
+                        <tr><td><%= recref.supplier_id %></td></tr>
+                        <tr><td>Price: <%= Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(recref.prodprice) %> <tr><td>
+                        <tr><td><%= recref.prodprice %></td></tr>
+                        <tr><td><%= recref.status %></td></tr>
+                        <tr><td><a href='/product/<%= recref.product_id%>/show'>Details</a></td></tr>
+                    </table>
+                </product>
+            <% }); %>
+        <% } %>
+    </td>
 
-    
-  
+    <td width="20%">
+        <% if (promos.length > 0) {%>
+        <table>
+            <% promos.forEach((recref, index) => { %>
+            <tr><td><img src="/images/<%= recref.promoimage %>"></td></tr>  
+            <% }); %>
+        </table>
+        <% } %>
+    </td>
+        
 
-
+</tr></table>
