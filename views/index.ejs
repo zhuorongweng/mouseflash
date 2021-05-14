@@ -25,11 +25,18 @@
         <% if (promos.length > 0) {%>
         <table>
             <% promos.forEach((recref, index) => { %>
-            <tr><td><img src="/images/<%= recref.promoimage %>"></td></tr>  
+            <tr><td><img src="/images/<%= recref.promoimage %>"></td></tr> 
+            <tr><td><a href='/promotion/<%= recref.promotion_id%>/show'>Promotion Details</a></td></tr> 
             <% }); %>
         </table>
         <% } %>
     </td>
-        
+    
+</tr>
+</table>
 
-</tr></table>
+<tr>
+    <td>
+        <a href="/"><img src="/images/music.png" > </a>
+    </td>
+</tr>
