@@ -1,4 +1,5 @@
-var express = require('express');  var router = express.Router();
+var express = require('express');  
+var router = express.Router();
 
 // ==================================================
 // Route to list all records. Display view to list all records
@@ -49,9 +50,9 @@ router.get('/addrecord', function(req, res, next) {
 // ==================================================
 router.post('/', function(req, res, next) {
 
-    let insertquery = "INSERT INTO orderdetail (order_id, product_id, saleprice, qty) VALUES (?,?,?,?)";
+    let insertquery = "INSERT INTO orderdetail (order_id, product_id, saleprice, qty) VALUES (?, ?, ?, ?)";
     
-    db.query(insertquery,[req.body.order_id, req.body.product_id, req.body.saleprice,req.body.qty ],(err, result) => {
+    db.query(insertquery,[req.body.order_id, req.body.product_id, req.body.saleprice,req.body.qty],(err, result) => {
         if (err) {
             console.log(err);  
             res.render('error');
@@ -69,7 +70,7 @@ router.post('/', function(req, res, next) {
 //URL: http://localhost:4039/orderdetail/99/edit
 // ==================================================
 router.get('/:recordid/edit', function(req, res, next) {
-    let query = "SELECT orderdetail_id, order_id, product_id,saleprice, qty FROM orderdetail WHERE orderdetail_id = " + req.params.recordid;
+    let query = "SELECT orderdetail_id,order_id, product_id, saleprice, qty FROM orderdetail WHERE orderdetail_id = " + req.params.recordid;
     
     // execute query
     db.query(query, (err, result) => {
@@ -86,9 +87,9 @@ router.get('/:recordid/edit', function(req, res, next) {
 // Route to save edited data in database.
 // ==================================================
 router.post('/save', function(req, res, next) {
-    let updatequery = "UPDATE orderdetail SET order_id = ?, product_id  = ?, saleprice = ?, qty= ? WHERE orderdetail_id = " + req.body.orderdetail_id;
+    let updatequery = "UPDATE orderdetail SET order_id = ?, product_id  = ?, saleprice = ?, qty = ? WHERE orderdetail_id = " + req.body.orderdetail_id;
     
-    db.query(updatequery,[req.body.orderdetailname, req.body.description],(err, result) => {
+    db.query(updatequery, [req.body.order_id, req.body.product_id, req.body.saleprice, req.body.qty ],(err, result) => {
         if (err) {
             console.log(err);  res.render('error');
         } else {

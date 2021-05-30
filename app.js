@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
+const session = require('express-session');
+
 
 const mariadb = require('mariadb/callback');
 const db = mariadb.createConnection({host: 'eagle.cdm.depaul.edu',
@@ -39,6 +41,7 @@ var subscriptionRouter=require('./routes/subscription');
 var searchRouter = require('./routes/search');
 var reportRouter = require('./routes/report');
 var promotionRouter = require('./routes/promotion');
+var catalogRouter = require('./routes/catalog');
 
 var app = express();
 
@@ -52,6 +55,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+
+app.use(session({secret: 'MouseFlashAppSecret'}));
+app.use(function(req,res,next){  
+  res.locals.session = req.session;  
+  next();
+});
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -71,6 +81,8 @@ app.use('/subscription', subscriptionRouter);
 app.use('/search', searchRouter);
 app.use('/report', reportRouter);
 app.use('/promotion', promotionRouter);
+app.use('/catalog', catalogRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
