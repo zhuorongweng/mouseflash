@@ -20,11 +20,11 @@
             <td><%= item.prodimage %></td>
             <td><%= item.supplier_id %></td>
             <td><%= item.category_id %></td>
-            <td><%= item.prodprice %></td>
+            <td><%= Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(item.prodprice) %></td>
             <% totqty = totqty + parseInt(qtys[index]) %>
             <% lineitemcost = item.prodprice * parseInt(qtys[index]) %>
             <td><%= qtys[index] %> </td>
-            <td><%= lineitemcost %> </td>
+            <td><%= Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(lineitemcost) %> </td>
             <% totprice = totprice + lineitemcost %>
             <td>
             <form action="/catalog/remove" method="post" >
@@ -37,7 +37,7 @@
         <tr bgcolor="yellow" >
             <td colspan="6"><b>Totals</b></td>
             <td><%= totqty %></td>
-            <td><%= totprice %></td>
+            <td><%= Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(totprice)   %></td>
             <td><button class='button1' onclick="window.location.href='/catalog/checkout'">Checkout</button></td>
         </tr>
     </table>

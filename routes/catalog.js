@@ -5,7 +5,7 @@ var router = express.Router();
 // Route to list all products on the catalog
 // ==================================================
 router.get('/', function(req, res, next) {
-let query = "SELECT product_id, productname, prodimage, category_id, supplier_id,  prodprice, status FROM product";
+let query = "SELECT product_id, productname, prodimage, categoryname, suppliername,  prodprice, status FROM product, category, supplier WHERE product.category_id = category.category_id AND product.supplier_id = supplier.supplier_id";
 
     // execute query
     db.query(query, (err, result) => {

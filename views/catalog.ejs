@@ -9,12 +9,16 @@
                 <td><%= Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(recref.prodprice) %></td>
             </tr>
             <tr>
-                <td><img src="/images/<%= recref.prodimage %>"></td>
-                <tr><td><%= recref.status %></td></tr>
+                <td><img src="/images/<%= recref.prodimage %>" width='100' height='90' ></td>
+                <td><%= recref.status %></td>
             </tr>
             <tr>
-                <td><%= recref.category_id %></td>
-                <td><%= recref.supplier_id %></td>
+                <td><b>Categoryname: %></b></td>
+                <td><%=recref.categoryname %></td>
+            </tr>
+            <tr>
+                <td><b>Suppliername: %></b></td>
+                <td><%= recref.suppliername %></td>
             </tr>
             <tr>
                 <td><a href='/product/<%= recref.product_id %>/show'>Show Details</a></td>
