@@ -17,7 +17,6 @@ router.get('/logout', function(req, res, next) {
     req.session.custname = "";
     req.session.cart=[]; 
     req.session.qty=[];
-    req.session.isadmin = false;  
     res.redirect('/');
 });
     
@@ -27,7 +26,7 @@ router.get('/logout', function(req, res, next) {
 // Route Check Login Credentials
 // ==================================================
 router.post('/login', function(req, res, next) {
-    let query = "select customer_id, firstname, lastname, password, isadmin from customer WHERE username = '" + req.body.username + "'";
+    let query = "select customer_id, firstname, lastname, password from customer WHERE username = '" + req.body.username + "'";
     // execute query    
     db.query(query, (err, result) => {
         if (err) {res.render('error');} 
@@ -43,11 +42,6 @@ router.post('/login', function(req, res, next) {
                         var custname = result[0].firstname + " "+ result[0].lastname;
                         req.session.custname = custname;  
                         res.redirect('/');
-                        
-                        if(result[0].isadmin){
-                            var isadmin = true;
-                            req.session.isadmin = isadmin;
-                        }
 
                     } else {
                         // password do not match
@@ -75,7 +69,7 @@ router.post('/login', function(req, res, next) {
 // ==================================================
 
 router.get('/', function(req, res, next) {
-    let query = "SELECT customer_id, firstname, lastname, email, phone, address, city, state, username, password,isadmin FROM customer";
+    let query = "SELECT customer_id, firstname, lastname, email, phone, address, city, state, username, password FROM customer";
 
     // execute query
     db.query(query, (err, result) => {
@@ -101,7 +95,7 @@ router.get('/register', function(req, res, next) {
 // URL: http://localhost:4039/customer/99/show
 // ==================================================
 router.get('/:recordid/show', function(req, res, next) {
-    let query = "SELECT customer_id, firstname, lastname, email,phone, address, city, state, username, password,isadmin FROM customer WHERE customer_id = " + req.params.recordid;
+    let query = "SELECT customer_id, firstname, lastname, email,phone, address, city, state, username, password FROM customer WHERE customer_id = " + req.params.recordid;
     
     // execute query
     db.query(query, (err, result) => {  
@@ -127,13 +121,13 @@ router.get('/addrecord', function(req, res, next) {
 // ==================================================
 router.post('/', function(req, res, next) {
 
-    let insertquery = "INSERT INTO customer (firstname, lastname, email, phone, address, city, state, username, password,isadmin) VALUES (?, ?, ?, ?, ?,?, ?,?,?,?)";
+    let insertquery = "INSERT INTO customer (firstname, lastname, email, phone, address, city, state, username, password) VALUES (?, ?, ?, ?, ?,?, ?,?,?)";
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
         if(err) { res.render('error');}  
     
-            db.query(insertquery,[req.body.firstname, req.body.lastname, req.body.email, req.body.phone, req.body.address, req.body.city, req.body.state,req.body.username,hash, req.body.isadmin],(err, result) => {
+            db.query(insertquery,[req.body.firstname, req.body.lastname, req.body.email, req.body.phone, req.body.address, req.body.city, req.body.state,req.body.username,hash],(err, result) => {
                 if (err) {
                     console.log(err);  
                     res.render('error');
@@ -153,7 +147,7 @@ router.post('/', function(req, res, next) {
 //URL: http://localhost:4039/customer/99/edit
 // ==================================================
 router.get('/:recordid/edit', function(req, res, next) {
-    let query = "SELECT customer_id , firstname , lastname,email, phone, address, city, state, username, password, isadmin FROM customer WHERE customer_id = " + req.params.recordid;
+    let query = "SELECT customer_id , firstname , lastname,email, phone, address, city, state, username, password FROM customer WHERE customer_id = " + req.params.recordid;
     
     // execute query
     db.query(query, (err, result) => {
@@ -170,9 +164,9 @@ router.get('/:recordid/edit', function(req, res, next) {
 // Route to save edited data in database.
 // ==================================================
 router.post('/save', function(req, res, next) {
-    let updatequery = "UPDATE customer SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ?, city = ?, state = ?,username = ?,password = ?, isadmin=? WHERE customer_id = " + req.body.customer_id;
+    let updatequery = "UPDATE customer SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ?, city = ?, state = ?,username = ?,password = ? WHERE customer_id = " + req.body.customer_id;
     
-    db.query(updatequery, [req.body.firstname, req.body.lastname, req.body.email, req.body.phone, req.body.address, req.body.city, req.body.state, req.body.username, req.body.password, req.body.isadmin],(err, result) => {
+    db.query(updatequery, [req.body.firstname, req.body.lastname, req.body.email, req.body.phone, req.body.address, req.body.city, req.body.state, req.body.username, req.body.password],(err, result) => {
         if (err) {
             console.log(err);  res.render('error');
         } else {

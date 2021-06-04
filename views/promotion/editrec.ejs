@@ -7,7 +7,7 @@
     <tr> <td> Description: </td> <td> <input type="text" name="description" value="<%= onerec.description%>" required> </td> </tr>
     <tr> <td> Start Date: </td> <td> <input type="date" name="startdate " value="<%= onerec.startdate.toISOString().split('T')[0] %>" required> </td> </tr>
     <tr> <td> End date: </td> <td> <input type="date" name="enddate " value="<%= onerec.enddate.toISOString().split('T')[0] %>" required> </td> </tr>
-    <tr> <td> Discountrate: </td> <td> <input type="number" name="discountrate " value="<%= onerec.discountrate %>" required> </td> </tr>
+    <tr> <td> Discountrate: </td> <td> <input type="number" name="discountrate " value="<%= onerec.discountrate %>"> </td> </tr>
 </table>
 <button type="submit">Save</button>
 </form>

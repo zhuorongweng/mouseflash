@@ -49,7 +49,7 @@ router.get('/addrecord', function(req, res, next) {
 // ==================================================
 router.post('/', function(req, res, next) {
 
-    "INSERT INTO customer (suppliername , Pointofcontact , weburl , suppliernotes) VALUES (?, ?, ?, ?)";
+    let insertquery = "INSERT INTO supplier (suppliername , Pointofcontact , weburl , suppliernotes) VALUES (?, ?, ?, ?)";
     
     db.query(insertquery,[req.body.suppliername, req.body.Pointofcontact, req.body.weburl, req.body.suppliernotes],(err, result) => {
         if (err) {
@@ -86,11 +86,12 @@ router.get('/:recordid/edit', function(req, res, next) {
 // Route to save edited data in database.
 // ==================================================
 router.post('/save', function(req, res, next) {
-    let updatequery = "UPDATE supplier SET suppliername = ?, Pointofcontact  = ?, weburl  = ?, suppliernotes  = ? WHERE supplier_id = " + req.body.supplier_id;
+    let updatequery = "UPDATE supplier SET suppliername = ?, Pointofcontact = ?, weburl  = ?, suppliernotes = ? WHERE supplier_id = " + req.body.supplier_id;
     
     db.query(updatequery,[req.body.suppliername, req.body.Pointofcontact, req.body.weburl, req.body.suppliernotes],(err, result) => {
         if (err) {
-            console.log(err);  res.render('error');
+            console.log(err);  
+            res.render('error');
         } else {
             res.redirect('/supplier');
         }

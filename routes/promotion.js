@@ -41,11 +41,7 @@ router.get('/:recordid/show', function(req, res, next) {
 // URL: http://localhost:4039/promotion/addrecord
 // ==================================================
 router.get('/addrecord', function(req, res, next) {
-
-    router.get('/addrecord', function(req, res, next) {  
         res.render('promotion/addrec');
-    });
-
 });
 
 // ==================================================
